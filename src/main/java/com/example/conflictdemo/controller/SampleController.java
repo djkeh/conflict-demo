@@ -6,6 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.math.BigDecimal;
 import java.util.Optional;
 
 
@@ -20,8 +21,8 @@ public class SampleController {
 
 
     @GetMapping("/")
-    ResponseEntity<SampleDomain> startingPoint() {
+    ResponseEntity<BigDecimal> startingPoint() {
         Optional<SampleDomain> domain = sampleDomainRepository.findById(1L);
-        return ResponseEntity.ok(domain.orElseGet(SampleDomain::new));
+        return ResponseEntity.ok(domain.orElseGet(SampleDomain::new).getFee());
     }
 }
